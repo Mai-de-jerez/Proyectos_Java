@@ -17,4 +17,4 @@ Si deseas clonar este repositorio y ejecutar los proyectos, sigue estos pasos:
 Abre tu terminal y ejecuta:
 
 ```bash
-git clone [https://docs.github.com/es/repositories/creating-and-managing-repositories/quickstart-for-repositories](https://docs.github.com/es/repositories/creating-and-managing-repositories/quickstart-for-repositories)
+git clone https://github.com/Mai-de-jerez/Proyectos_Java
