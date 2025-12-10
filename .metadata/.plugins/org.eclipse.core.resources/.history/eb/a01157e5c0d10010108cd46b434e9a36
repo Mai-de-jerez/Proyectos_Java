@@ -1,8 +1,0 @@
-package POO_Clase_Animal;
-
-public class Saludo {
-
-	public void saludar(){
-        System.out.println("Bienvenidos al curso de Java");
-    }
-}
