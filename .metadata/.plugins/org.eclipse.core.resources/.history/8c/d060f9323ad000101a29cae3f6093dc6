@@ -1,0 +1,35 @@
+package Variables;
+
+public class ConcatenarStrings {
+
+	public static void main(String[] args) {
+		
+		// concatenar con +
+		
+		String curso = "Programación Java";
+		String profesor = "Andrés Guzmán";
+		
+		String detalle = curso + " con el instructor " + profesor;
+		System.out.println(detalle);
+		
+		int a = 10;
+		int b = 5;
+		
+		System.out.println(detalle + a + b);
+		// debemos hacer esto si queremos que sume primero la suma
+		System.out.println(detalle + (a + b));
+		
+		// el orden influye, aqui hara primero la suma
+		System.out.println(a + b + detalle);
+		
+		// concatenar con concat()
+		// imprime sin espacio
+		String detalle2 = curso.concat(profesor);
+		System.out.println(detalle2);
+		// imprime con espacio
+		String detalle2 = curso.(" ".concat(profesor));
+		System.out.println(detalle2);
+		
+	}
+
+}

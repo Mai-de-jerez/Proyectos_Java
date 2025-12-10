@@ -1,0 +1,82 @@
+package modelo;
+
+public class Nave {
+
+	// Atributos 
+	
+	private String nombre;
+	private Faccion faccion;
+	private int misiles;
+	private boolean necesitaReparacion;
+	
+	
+	// Constructores
+	
+	public Nave(String nombre, Faccion faccion, int misiles, boolean necesitaReparacion) {
+		super();
+		this.nombre = nombre;
+		this.faccion = faccion;
+		this.misiles = misiles;
+		this.necesitaReparacion = necesitaReparacion;
+	}
+	
+	
+	public Nave() {
+		
+	}
+	
+		
+	// GETTERS AND SETTERS
+	
+	public String getNombre() {
+		return nombre;
+	}
+
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+
+	public Faccion getFaccion() {
+		return faccion;
+	}
+
+
+	public void setFaccion(Faccion faccion) {
+		this.faccion = faccion;
+	}
+
+
+	public int getMisiles() {
+		return misiles;
+	}
+
+
+	public void setMisiles(int misiles) {
+		this.misiles = misiles;
+	}
+
+
+	public boolean isNecesitaReparacion() {
+		return necesitaReparacion;
+	}
+
+
+	public void setNecesitaReparacion(boolean necesitaReparacion) {
+		this.necesitaReparacion = necesitaReparacion;
+	}
+	
+	
+	// MÉTODO toString() sobreescrito para que no me muestre en mayúsculas la faccion
+	
+	@Override
+	public String toString() {
+		return "Nave [nombre=" + nombre + ", faccion=" + this.faccion.getNombreFaccion() + ", misiles=" + misiles + ", necesitaReparacion="
+				+ necesitaReparacion + "]";
+	} 
+	
+	
+	
+}
+

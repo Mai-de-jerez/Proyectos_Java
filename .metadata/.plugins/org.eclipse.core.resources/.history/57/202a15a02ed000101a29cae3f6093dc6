@@ -1,0 +1,10 @@
+package Variables;
+
+public class DetalleDeFactura {
+
+	public static void main(String[] args) {
+		// 
+
+	}
+
+}

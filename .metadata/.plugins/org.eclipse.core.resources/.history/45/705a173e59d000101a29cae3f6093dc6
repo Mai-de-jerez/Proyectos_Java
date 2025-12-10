@@ -1,0 +1,34 @@
+package POO;
+
+public class EjemploAutomovil {
+
+	public static void main(String[] args) {
+		
+		
+		// nuevo objeto de la clase Automovil
+		Automovil subaru = new Automovil("Subaru", "Impreza");
+		subaru.setColor("rosa"); 
+		subaru.setCilindrada(2.0); 
+		
+		Automovil mazda = new Automovil("Mazda","BT-50", "rojo", 3.0); 
+		System.out.println("Mazda fabricante: "+ mazda.getFabricante());
+		
+		// instanciar sin parametros
+		Automovil nissan = new Automovil("Nissan", "Navara", "Gris Metalizado", 3.5, 50);
+		
+		// Vemos el resultado
+		subaru.verDetalle();
+		mazda.verDetalle();
+		System.out.println(subaru.detalle2());
+		System.out.println(mazda.detalle2());
+		System.out.println(subaru.acelerar(3000));
+		System.out.println(mazda.frenar());
+		System.out.println(subaru.acelerarFrenar(4000));
+		System.out.println(nissan.detalle2());
+		System.out.println("Km por litro: " + subaru.calcularConsumo(300, 0.6f));
+		System.out.println("Km por litro: " + subaru.calcularConsumo(300, 60));
+		
+		
+	}
+
+}

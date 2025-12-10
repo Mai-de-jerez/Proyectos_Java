@@ -1,0 +1,22 @@
+package POO;
+
+public class EjemploAutomovil {
+
+	public static void main(String[] args) {
+		
+		
+		// nuevo objeto de la clase Automovil
+		Automovil auto = new Automovil();
+		
+		// asignar atributos
+		auto.fabricante = "Subaru";
+		auto.color = "rosa";
+		auto.modelo = "Ferrari";
+		auto.cilindrada = 2.0;
+		System.out.println("Fabricante auto: "+ auto.fabricante);
+		System.out.println("Modelo auto: "+ auto.modelo);
+		System.out.println("Color auto: "+ auto.color);
+		System.out.println("Cilindrada auto: "+ auto.cilindrada);
+	}
+
+}

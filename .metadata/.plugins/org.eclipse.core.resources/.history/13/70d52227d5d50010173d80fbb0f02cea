@@ -1,0 +1,33 @@
+package controlador;
+
+import java.util.Scanner;
+
+import modelo.Faccion;
+import modelo.Nave;
+
+public class ControlFlota {
+
+	public static void main(String[] args) {
+		
+		Scanner sc = new Scanner(System.in);
+		
+		// Crear dos naves
+		
+        Nave nave1 = new Nave("Odisea", Faccion.CINTURON,5, true);
+        Nave nave2 = new Nave("Odisea", Faccion.MARTE,5, false);
+        
+        System.out.println("--- PRUEBA DE VISUALIZACIÓN DE NAVE ---\n");
+        // detalle
+        System.out.println(nave1);
+        System.out.println(nave2);
+        // ver la faccion 
+        System.out.println(nave1.getFaccion());
+        // con getNombreVisible() la vemos en minusculas
+        System.out.println(nave2.getFaccion().getNombreVisible());
+	
+        System.out.println("Dime la facción (Tierra, Marte o Cinturon): ");
+		Faccion faccion = Faccion.valueOf(sc.nextLine().trim().toUpperCase());
+		System.out.println("la facción: "+faccion);
+	}
+
+}

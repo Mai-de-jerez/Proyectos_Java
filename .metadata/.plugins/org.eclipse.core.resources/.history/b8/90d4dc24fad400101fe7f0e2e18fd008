@@ -1,0 +1,77 @@
+package POO;
+
+public class EjemploAutomovilEstatico {
+
+	public static void main(String[] args) {
+		
+		// Vemos detalle
+		// nuevo objeto de la clase Automovil
+				Automovil subaru = new Automovil("Subaru", "Impreza");
+				subaru.setColor("rosa"); 
+				subaru.setCilindrada(2.0); 
+				
+				// objeto numero 2
+				Automovil mazda = new Automovil("Mazda","BT-50", "Rojo", 3.0); 
+				
+				// objetos numero 3 y 4
+				Automovil nissan = new Automovil("Nissan", "Navara", "Gris Metalizado", 3.5, 50);
+				Automovil opel = new Automovil("Opel", "Vectra");
+				
+				// Vemos el resultado para ver que todos tienen colorPatente en Naranja
+				
+				System.out.println("\n--- Características ---");
+			
+				System.out.println(subaru.verDetalle());
+				System.out.println(mazda.verDetalle());
+				System.out.println(nissan.verDetalle());
+				System.out.println(opel.verDetalle());
+			
+				// si ponemos esto:
+				Automovil.setColorPatente("Verde"); // forma correcta de establecer el valor del colorPatente
+				
+				System.out.println("\n--- Nuevas Características ---");
+				// Comprobamos que hemos cambiado el colorPatente de todos los automoviles a verde
+				System.out.println(subaru.verDetalle());
+				System.out.println(mazda.verDetalle());
+				System.out.println(nissan.verDetalle());
+				System.out.println(opel.verDetalle());
+				
+				System.out.println("\n--- Capacidad del Estanque de cada vehículo ---");
+				// Comprobamos que hemos cambiado el colorPatente de todos los automoviles a verde
+				System.out.println(subaru.calcularConsumo(88, 70));
+				System.out.println(mazda.calcularConsumo(88, 70));
+				System.out.println(nissan.calcularConsumo(88, 70));
+				System.out.println(opel.calcularConsumo(88, 70));
+				
+				System.out.println("\n--- Capacidad del Estanque Estática (mismo para todos los vehículos) ---");
+				// para el consumo estático como es el mismo para todos, no se llama desde el nombre del objeto,
+				// sino desde el nombre d ela clase
+				System.out.println(Automovil.calcularConsumoEstatico(88, 70));
+				/*
+				 * Si pusiera esto:
+				 * System.out.println(nissan.calcularConsumoEstatico(88, 70));
+				 * System.out.println(mazda.calcularConsumoEstatico(88, 70));
+				 * System.out.println(subaru.calcularConsumoEstatico(88, 70));
+				 * System.out.println(opel.calcularConsumoEstatico(88, 70));
+				 * imprimiria lo mismo para todos
+				 */
+				
+				// Así vemos el Id de un auto
+				System.out.println("\n--- Ver Ids ---");
+				System.out.println("Id nissan: "+ nissan.getId());
+				System.out.println("Id opel: "+ opel.getId());
+				System.out.println("Id subaru: "+ subaru.getId());
+				
+				// Ver las constantes de VELOCIDAD MAX en ciudad y carretera
+				System.out.println("\n--- Velocidades fijas en todos los autos ---");
+				System.out.println("Vel_max_ciudad: "+Automovil.VELOCIDAD_MAX_CIUDAD+" km/h");
+				System.out.println("Vel_max_carretera: "+Automovil.VELOCIDAD_MAX_CARRETERA+" km/h");
+				
+				// Asignar colores a través d elas constantes
+				System.out.println("\n--- Ver Nuevos colores asgnados con las constantes ---");
+				subaru.setColor(Automovil.COLOR_AMARILLO);
+				Automovil mercedes = new Automovil("Mercedes", "Venz", Automovil.COLOR_AZUL , 3.5, 50);
+				System.out.println(mercedes.toString());
+				System.out.println(subaru.getColor());
+	}
+}

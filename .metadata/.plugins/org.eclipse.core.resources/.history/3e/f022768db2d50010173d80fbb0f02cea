@@ -1,0 +1,23 @@
+package controlador;
+
+import modelo.Faccion;
+import modelo.Nave;
+
+public class ControlFlota {
+
+	public static void main(String[] args) {
+		
+	
+        Nave nave1 = new Nave("Odisea", Faccion.CINTURON,5, true);
+        
+        
+        System.out.println("--- PRUEBA DE VISUALIZACIÓN DE NAVE ---\n");
+  
+        System.out.println(nave1);
+        System.out.println(nave1.getFaccion());
+ 
+        Nave nave2 = new Nave("Odisea", Faccion.MARTE,5, true);
+        System.out.println(nave2.getFaccion());
+	}
+
+}

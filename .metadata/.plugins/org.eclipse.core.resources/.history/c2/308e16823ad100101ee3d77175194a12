@@ -1,0 +1,18 @@
+package POO;
+
+public class Saludo {
+	public void saludar(){
+        System.out.println("Bienvenidos al curso de Java");
+    }
+	
+	
+	
+	
+	
+
+	public static void main(String[] args) {
+		// TODO Esbozo de método generado automáticamente
+
+	}
+
+}

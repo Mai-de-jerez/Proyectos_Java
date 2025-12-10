@@ -1,0 +1,23 @@
+package modelo;
+
+public class Coche {
+	
+	// atributos
+	private String marca;
+	private String modelo;
+	private double precio;
+	private String color;
+	private int km;
+	
+	// constructores
+	public Coche() {
+	}
+		
+	// metodos
+	public void getMarca (String marca) {
+		this.marca = marca;
+	}
+		
+	
+	
+}

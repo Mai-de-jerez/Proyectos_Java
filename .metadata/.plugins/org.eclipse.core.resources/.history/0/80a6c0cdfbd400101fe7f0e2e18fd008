@@ -1,0 +1,225 @@
+package POO;
+
+public class Automovil {
+	
+	// Atributos privados
+	private int id;
+	private String fabricante;
+	private String modelo;
+	private Color color; // ahora que creamos el enum color debe ser de tipo Clor y no de tipo String
+	private double cilindrada;
+	private int capacidadEstanque = 40;
+	
+	// Atributos privados estáticos (lo tienen todos los objetos de la clase)
+	// Se accede a ellos a través del nombre de la clase
+	private static int capacidadEstanqueEstatico = 30;
+	private static Color colorPatente = Color.NARANJA; // este tb se cambia a tipo Color
+	private static int ultimoId;
+	
+	// Atributos públicos estáticos + final
+	public static final Integer VELOCIDAD_MAX_CARRETERA = 120;
+	// NO puede ser modificado a posteriori porque es una constante, solo la podemos imprimir
+	public static final int VELOCIDAD_MAX_CIUDAD = 60;
+	public static final String COLOR_ROJO="Rojo";
+	public static final String COLOR_AMARILLO="Amarillo";
+	public static final String COLOR_AZUL="Azul";
+	public static final String COLOR_BLANCO="Blanco";
+	public static final String COLOR_GRIS="Gris Oscuro";
+	
+	
+	
+	// Crear constructores
+	public Automovil() {
+		this.id = ++ultimoId;
+	}
+	
+	// sobrecarga de constructores
+	public Automovil(String fabricante, String modelo) {
+		this();
+		this.fabricante = fabricante;
+		this.modelo = modelo;
+	}
+		
+	
+	public Automovil(String fabricante, String modelo, String color) {
+		this(fabricante, modelo); // reutilizamos los ya creados
+		this.color = color;
+	}
+	
+	
+	public Automovil(String fabricante, String modelo, String color, double cilindrada) {
+		this(fabricante, modelo, color);
+		this.cilindrada = cilindrada;
+	}
+	
+	
+	public Automovil(String fabricante, String modelo, String color, double cilindrada, int capacidadEstanque) {
+		this(fabricante, modelo, color, cilindrada);
+		this.capacidadEstanque = capacidadEstanque;
+	}
+
+	// como los métodos son privados no se pueden leer desde fuera de la clase
+	// hay que hacerlo asi, POR CONVENCION SE USA get
+	
+	// tiene que ser estatico porque es un atributo estático
+	public static String getColorPatente() {
+		return colorPatente;
+	}
+	
+	public static void setColorPatente(String colorPatente) {
+		Automovil.colorPatente = colorPatente;
+		// para diferenciar la variable del atributo de la clase ponemos delante Automovil()
+	}
+	
+	public String getFabricante() {
+		return this.fabricante;
+	}
+	
+
+	public String getModelo() {
+		return this.modelo;
+	}
+	
+	public String getColor() {
+		return this.color;
+	}
+	
+	public double getCilindrada() {
+		return this.cilindrada;
+	}
+	
+	public int getCapacidadEstanque() {
+		return this.capacidadEstanque;
+	}
+	
+	public static int getCapacidadEstanqueEstatico() {
+		return capacidadEstanqueEstatico;
+	}
+	
+	public void setFabricante(String fabricante) {
+		this.fabricante = fabricante;
+	}
+	
+	public void setColor(String color) {
+		this.color = color;
+	}
+	
+	public void setModelo(String modelo) {
+		this.modelo = modelo;
+	}
+	
+	public void setCilindrada(double cilindrada) {
+		this.cilindrada = cilindrada;
+	}
+	
+	public void setCapacidadEstanque(int capacidadEstanque) {
+		this.capacidadEstanque = capacidadEstanque;
+	}
+
+
+	public static void setCapacidadEstanqueEstatico(int capacidadEstanqueEstatico) {
+		Automovil.capacidadEstanqueEstatico = capacidadEstanqueEstatico;
+	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	
+	// Métodos:
+
+	// Método que imprime el detalle del vehiculo
+	public String verDetalle() {
+		return  "\nId de auto: "+this.id + 
+				"\nFabricante auto: "+ this.getFabricante() +
+				"\nModelo auto: "+ this.getModelo() +
+				"\nColor auto: "+ this.getColor() +
+				"\nCilindrada auto: "+ this.getCilindrada() +
+				"\nColor patente: "+ colorPatente;
+	}   
+	
+	/* Método que imprime el detalle del vehiculo (otra forma)
+	   
+	    public String detalle2() {
+	    StringBuilder sb = new StringBuilder();
+		sb.append("\nFabricante auto: "+ this.fabricante);
+		sb.append("\nModelo auto: "+ this.modelo);
+		sb.append("\nColor auto: "+ this.color);
+		sb.append("\nCilindrada auto: "+ this.cilindrada);
+		return sb.toString();
+	}
+	*/
+	
+	public String acelerar(int rpm) {
+		return "\nEl auto " + this.fabricante + " acelerando a " + rpm + " rpm";
+	}
+	
+	public String frenar() {
+		return this.fabricante + " " + this.modelo + " frenando." ;
+	}
+	
+	public String acelerarFrenar (int rpm) {
+		String acelerar = this.acelerar(rpm);
+		String frenar = this.frenar();
+		return acelerar + "\n" + frenar;
+	}
+	
+	// sobrecarga de métodos
+	public float calcularConsumo(int km, float porcentajeBencina) {
+		return km/(capacidadEstanque*porcentajeBencina);
+	}
+	
+	public float calcularConsumo(int km, int porcentajeBencina) {
+		return km/(capacidadEstanque*(porcentajeBencina/100f));
+	}
+	
+	public static float calcularConsumoEstatico(int km, int porcentajeBencina) {
+		return km/(Automovil.capacidadEstanqueEstatico * (porcentajeBencina/100f));
+	}
+	
+	
+
+	
+	
+	/* 
+	 * Método equals()
+	 * Generar: clic derecho > codigo fuente > generar hasCode() y equals()
+	 * Sobreescribir método equals(): clic derecho > codigo fuente > alterar temporalmente/implementar métodos
+	 */
+		 
+
+
+	@Override
+	public boolean equals(Object obj) {
+		
+		if(this==obj) {
+			return true; 
+		}
+		if (!(obj instanceof Automovil)) {
+			return false; 
+		}
+		Automovil a = (Automovil) obj;
+		return (this.fabricante != null && this.modelo != null
+				&& this.fabricante.equals(a.getFabricante()) 
+				&& this.modelo.equals(a.getModelo()));
+	}
+
+	
+	/*
+	 * Generar: (clic derecho > codigo fuente > Generar toString()
+	 * Ayuda a leer los atributos del objeto
+	 * Lo hemos sobreescrito para que solo devuelva modelo y fabricante
+	 */
+	
+	@Override
+	public String toString() {
+		return "Automovil [id="+ id +"fabricante=" + fabricante + ", modelo=" + modelo + "]";
+	} 
+	
+	
+	
+}

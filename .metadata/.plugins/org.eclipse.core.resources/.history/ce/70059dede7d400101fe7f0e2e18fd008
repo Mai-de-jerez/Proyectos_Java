@@ -1,0 +1,65 @@
+package POO;
+
+import java.util.Date;
+
+public class EjemploAutomovil {
+
+	public static void main(String[] args) {
+		
+		
+		// nuevo objeto de la clase Automovil
+		Automovil subaru = new Automovil("Subaru", "Impreza");
+		subaru.setColor("rosa"); 
+		subaru.setCilindrada(2.0); 
+		
+		// objeto numero 2
+		Automovil mazda = new Automovil("Mazda","BT-50", "rojo", 3.0); 
+		
+		// objetos numero 3 y 4
+		Automovil nissan = new Automovil("Nissan", "Navara", "Gris Metalizado", 3.5, 50);
+		Automovil opel = new Automovil("Opel", "Vectra");
+		
+		// Vemos el resultado
+		System.out.println("\n--- Características ---");
+		subaru.verDetalle();
+		mazda.verDetalle();
+		System.out.println(subaru.detalle2());
+		System.out.println(mazda.detalle2());
+		System.out.println(nissan.detalle2());
+		System.out.println(opel.detalle2());
+		System.out.println("\n--- Aceleración y frenado ---");
+		System.out.println(subaru.acelerar(3000));
+		System.out.println(mazda.frenar());
+		System.out.println(subaru.acelerarFrenar(4000));
+		System.out.println("\n--- Consumo ---\n");
+		System.out.println("Km por litro: " + subaru.calcularConsumo(300, 0.6f));
+		System.out.println("Km por litro: " + subaru.calcularConsumo(300, 60));
+		System.out.println("Km por litro: " + nissan.calcularConsumo(300, 60));
+		System.out.println("Km por litro: " + opel.calcularConsumo(300, 60));
+		
+		
+		// si creo otro objeto exactamente igual a nissan los detecta diferentes
+		Automovil nissan2 = new Automovil("Nissan", "Navara", "Gris Metalizado", 3.5, 50);
+		System.out.println("Son iguales?? " + (nissan==nissan2));
+		// como == compara objetos dice que false
+		System.out.println("Son iguales?? " + (nissan.equals(nissan2)));
+		// dice que son iguales pq hemos sobrescrito el metodo equals() para que
+		// compare por modelo y fabricante
+	
+		// Ejemplo: Creamos otro objeto vacío para comprarlo con un objeto lleno
+		Automovil auto = new Automovil();
+		System.out.println("Son iguales auto y nissan? "+auto.equals(nissan));
+		// arroja error porque un objeto vacio de tipo null mo puede invocar métodos
+		// para solucionarlo modificamos el metodo equals()
+		// tras solucionarlo daria false porque el modelo y el fabricante son distintos
+		
+		// Ejemplo: usar equals() para comparar con otro tipo de dato
+		Date fecha = new Date();
+		System.out.println("Son iguales auto y nissan? "+auto.equals(fecha));
+		// da error porque son tipos incompatibles
+		// volvemos a modificar el metodo equals() para que si es de distinto tipo
+		// arroje false
+		
+	}
+
+}

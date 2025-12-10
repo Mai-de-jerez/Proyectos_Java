@@ -1,0 +1,20 @@
+package Variables;
+
+public class Metodos_del_String {
+
+	public static void main(String[] args) {
+		
+		String nombre = "Andrés";
+		// longitud del string
+		System.out.println("Longitud del String: "+ nombre.length());
+		// convertir a mayúsculas
+		System.out.println("En mayúsculas: "+ nombre.toUpperCase());
+		// convertir a minúsculas
+		System.out.println("En minúsculas: "+nombre.toLowerCase());
+		// comparar strings con equals()
+		// discrimina entre tildes y Mayusculas
+		System.out.println("Es Andrés lo mismo que Andres?: "+nombre.equals("Andres"));
+		System.out.println("Es Andrés lo mismo que Andres?: "+nombre.equals("andrés"));
+	}
+
+}

@@ -1,0 +1,42 @@
+package POO;
+
+public class Automovil {
+	
+	// Atributos
+	String fabricante;
+	String modelo;
+	String color = "rojo"; // asignas color aqui
+	double cilindrada;
+	
+	// Métodos:
+	
+	// Método que imprime el detalle del vehiculo
+	public void verDetalle() {
+		System.out.println("\nFabricante auto: "+ this.fabricante);
+		System.out.println("Modelo auto: "+ this.modelo);
+		System.out.println("Color auto: "+ this.color);
+		System.out.println("Cilindrada auto: "+ this.cilindrada);
+	}
+	
+	// Método que imprime el detalle del vehiculo (otra forma)
+	public String detalle2() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("\nFabricante auto: "+ this.fabricante);
+		sb.append("\nModelo auto: "+ this.modelo);
+		sb.append("\nColor auto: "+ this.color);
+		sb.append("\nCilindrada auto: "+ this.cilindrada);
+		return sb.toString();
+	}
+	
+	public String acelerar(int rpm) {
+		return "el auto " + this.fabricante + " acelerando a " + rpm + " rpm";
+	}
+	
+	public String frenar() {
+		return this.fabricante + " " + this.modelo + " frenando." ;
+	}
+	
+	 
+	
+	
+}

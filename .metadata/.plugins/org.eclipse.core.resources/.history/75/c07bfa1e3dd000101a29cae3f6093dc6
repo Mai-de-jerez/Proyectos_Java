@@ -1,0 +1,35 @@
+package Variables;
+
+public class StringInmutable {
+
+	public static void main(String[] args) {
+		
+		String curso = "Programación Java";
+		String profesor = "Andrés Guzmán";
+		
+		String resultado = curso.concat(profesor); 
+		
+		System.out.println("Curso: "+curso);
+		
+		System.out.println("Resultado concatenación: "+resultado);
+		
+		System.out.println("Curso es igual a programacion: "+(curso == resultado));
+		
+		// otras formas de concatenar strings
+		curso.transform(c -> {
+			return c +" con "+ profesor;
+		});
+		
+		System.out.println("Curso: "+curso);
+		
+		
+		String resultado2 = curso.transform(c -> {
+			return c +" con "+ profesor;
+		});
+		
+		System.out.println("Resultado: "+resultado2);
+		resultado2.replace("a", "A");
+		System.out.println("Resultado: "+resultado2);
+	}
+
+}

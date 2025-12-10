@@ -1,0 +1,105 @@
+package controlador;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+
+public class Colecciones {
+
+	public static void main(String[] args) {
+		
+		int [] numeros = new int[5]; // así se declaraba un Array
+		
+		// Rellenar Array
+		numeros[0] = 5; //0 de índice
+		numeros[1] = 4; 
+		numeros[2] = 3; 
+		numeros[3] = 2; 
+		numeros[4] = 1; 
+		
+		
+		
+		// List
+		
+		// Declarar Arraylist
+		
+		ArrayList<Integer> numeritos = new ArrayList<>(); 
+		
+		// dar valores al array
+		numeritos.add(5); //1  -> con .get() el primer elemento es de índice 0
+		numeritos.add(4); //2
+		numeritos.add(9); //3
+		numeritos.add(1); //4
+		numeritos.add(0);
+		numeritos.add(16);
+		numeritos.add(89);
+		numeritos.add(0);
+		numeritos.add(16);
+		numeritos.add(89);
+		
+		// imprimir los valores
+		for (Integer n : numeritos) {
+			
+			System.out.println(n);
+		}
+		
+		//null <- [5][4][9][1][]][[]][] -> null
+		System.out.println(" El tamaño de mi Lista es: " +  numeritos.size());		
+		
+		/*
+		 * imprimir así pero es mala práctica
+		 * 
+		 * for (int i = 0; i<numeritos.size(); i++) {
+		 * 
+		 * 		System.out.println(numeritos.get(i)); }
+		 */
+		
+		
+		
+		// Estáticas -> Arrays-Arreglos-Vectores(son los 3 lo mismo)
+
+		// Dinámicas -> Listas, Set, map
+		
+		// Lista: datos ordenados que permiten duplicados
+		ArrayList<String> lista = new ArrayList<>(); 
+		
+		lista.add("Mai");
+		lista.add("Maria");
+		lista.add("Miguel");
+		lista.add("Javier");
+		lista.add("Mai");
+		
+		System.out.println("\n--LISTA--");
+		
+		for(String nombre: lista) {
+			
+			System.out.println(nombre);
+		}
+		
+		// OTRA FORMA
+		System.out.println("\n-- OTRA FORMA --");
+		lista.forEach(s -> System.out.println(s));
+		
+		// Set: datos desordenados que no permiten duplicados
+		HashSet<String> listaset = new HashSet<>();
+		
+		
+		listaset.add("Mai");
+		listaset.add("Maria");
+		listaset.add("Pepe");
+		listaset.add("Miguel");
+		listaset.add("Javier");
+		listaset.add("Mai");
+		
+		
+		 
+		
+		System.out.println("\n--SET--");
+		for(String nombre: listaset) {
+			
+			System.out.println(nombre);
+		}
+		
+		
+	}
+
+}

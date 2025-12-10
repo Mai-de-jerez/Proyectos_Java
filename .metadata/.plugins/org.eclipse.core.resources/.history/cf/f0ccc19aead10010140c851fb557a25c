@@ -1,0 +1,77 @@
+package POO_Persona;
+import java.util.Scanner;
+
+
+public class Main {
+
+	
+	public String resultadoIMC () {
+	
+	    int clasificacion = calcularIMC(); 
+	    
+	    // 2. Comprueba la variable guardada.
+	    if (clasificacion == BAJO_PESO) {
+	        return "El peso es demasiado bajo. Infrapeso.";
+	        
+	    } else if (clasificacion == PESO_IDEAL) {
+	        return "Su peso es ideal.";
+	        
+	    } else { 
+	        // Si no es BAJO_PESO ni PESO_IDEAL, por descarte es SOBREPESO (código 1).
+	        return "Usted padece sobrepeso.";
+	    }
+	}
+	
+	public static void main(String[] args) {
+        
+        Scanner lector = new Scanner(System.in); 
+        
+        System.out.println("--- INTRODUCIR DATOS PARA EL OBJETO 1 ---");
+   
+        System.out.println("Introduce el nombre: ");
+        String nombre = lector.nextLine(); 
+    
+        System.out.println("Introduce la edad: ");
+        int edad = lector.nextInt(); 
+   
+        lector.nextLine(); 
+
+        System.out.println("Introduce el sexo (H/M): ");
+  
+        char sexo = lector.nextLine().toUpperCase().charAt(0); 
+   
+        System.out.println("Introduce el peso (kg): ");
+        double peso = lector.nextDouble();
+
+        lector.nextLine();
+
+        System.out.println("Introduce la altura (cm): ");
+        int altura = lector.nextInt(); 
+    
+        lector.nextLine();
+     
+        lector.close();
+        
+        /*
+         * Crea 3 objetos de la clase anterior, el primer objeto obtendrá las anteriores variables pedidas por teclado,
+         *  el segundo objeto obtendrá todos los anteriores menos el peso y la altura y el último por defecto, 
+         *  para este último utiliza los métodos set para darle a los atributos un valor.
+         */
+        
+        Persona persona1 = new Persona(nombre, edad,null, sexo, peso, altura);
+        Persona persona2 = new Persona(nombre, edad, sexo);
+        Persona persona3 = new Persona();
+        persona3.setNombre("Rosa");
+        persona3.setEdad(44);
+        persona3.setSexo('M');
+        persona3.setPeso(55.3);
+        persona3.setAltura(170);
+        
+        
+        
+        
+        
+        
+        
+    }
+}

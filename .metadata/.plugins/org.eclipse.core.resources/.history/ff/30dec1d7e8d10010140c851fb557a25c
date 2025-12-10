@@ -1,0 +1,48 @@
+package POO_Persona;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+        
+        Scanner lector = new Scanner(System.in); 
+        
+        System.out.println("--- INTRODUCIR DATOS PARA EL OBJETO 1 ---");
+   
+        System.out.println("Introduce el nombre: ");
+        String nombre = lector.nextLine(); 
+    
+        System.out.println("Introduce la edad: ");
+        int edad = lector.nextInt(); 
+   
+        lector.nextLine(); 
+
+        System.out.println("Introduce el sexo (H/M): ");
+  
+        char sexo = lector.nextLine().toUpperCase().charAt(0); 
+   
+        System.out.println("Introduce el peso (kg): ");
+        double peso = lector.nextDouble();
+
+        lector.nextLine();
+
+        System.out.println("Introduce la altura (cm): ");
+        int altura = lector.nextInt(); 
+    
+        lector.nextLine();
+     
+        lector.close();
+        
+        /*
+         * Crea 3 objetos de la clase anterior, el primer objeto obtendrá las anteriores variables pedidas por teclado,
+         *  el segundo objeto obtendrá todos los anteriores menos el peso y la altura y el último por defecto, 
+         *  para este último utiliza los métodos set para darle a los atributos un valor.
+         */
+        
+        Persona persona1 = new Persona(nombre, edad,null, sexo, peso, altura);
+        
+        
+        
+        
+    }
+}

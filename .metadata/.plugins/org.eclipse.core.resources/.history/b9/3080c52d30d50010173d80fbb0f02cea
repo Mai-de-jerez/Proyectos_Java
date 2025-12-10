@@ -1,0 +1,47 @@
+package controlador;
+
+import java.util.ArrayList;
+
+public class Colecciones {
+
+	public static void main(String[] args) {
+		
+		int [] numeros = new int[5]; // ArrayList
+		
+		// List
+		
+		ArrayList<Integer> numeritos = new ArrayList<>(); 
+		
+		// dar valores al array
+		numeritos.add(5); // el primer elemento es 1 no 0
+		numeritos.add(6);
+		numeritos.add(7);
+		numeritos.add(8);
+		
+		// imprimir los valores
+		for (Integer n : numeritos) {
+			System.out.println(n);
+		}
+		
+		for (int i = 1; i<numeritos.size(); i++) {
+			
+			System.out.println(numeritos.get(i));
+		}
+		
+		// Estáticas -> Arrays-Arreglos-Vectores(son los 3 lo mismo)
+
+		// Dinámicas -> Listas, Set, map
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	}
+
+}

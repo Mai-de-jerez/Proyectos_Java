@@ -1,0 +1,17 @@
+package Variables;
+
+public class EjemploString {
+
+	public static void main(String[] args) {
+		// crear un string
+		String curso = "Programación Java";
+		// otra forma
+		String curso2 = new String("Programación Java");
+		// los comparamos
+		boolean esIgual = curso == curso2;
+		System.out.println(esIgual);
+		
+
+	}
+
+}

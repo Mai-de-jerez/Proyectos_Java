@@ -1,0 +1,8 @@
+package POO;
+
+public class Saludo {
+
+	public void saludar(){
+        System.out.println("Bienvenidos al curso de Java");
+    }
+}

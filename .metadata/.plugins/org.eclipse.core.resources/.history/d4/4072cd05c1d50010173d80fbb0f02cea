@@ -1,0 +1,52 @@
+package modelo;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Flota {
+	
+	// atributo privado
+	
+	private ArrayList<Nave> naves;
+	
+	
+	// constructor
+	
+	public Flota() {
+		
+		naves = new ArrayList<Nave>();
+		
+	}
+	
+	// Métodos
+	
+	/**
+	 * Agrega una nave al arraylist de naves con add()
+	 * @param nave
+	 */
+	public void agregarNave(Nave nave) {
+		
+		this.naves.add(nave); 
+	}
+	
+	
+	
+	public void crearNaveDesdeTeclado(Scanner sc) {
+		
+		System.out.println("\n--- NUEVA NAVE ---");
+		System.out.println("Dime el nombre: ");
+		String nombre = sc.nextLine();
+		System.out.println("Dime la facción (Tierra, Marte o Cinturon): ");
+		Faccion faccion = Faccion.valueOf(sc.nextLine().trim().toUpperCase());
+		System.out.println("Dime el número de misiles: ");
+		int numMisiles = sc.nextInt();
+		System.out.println("¿Necesita reparación (S/N)?: ");
+		char reparacion = sc.next().toUpperCase().charAt(0);
+		
+		
+	}
+	
+	
+	
+	
+}

@@ -1,0 +1,24 @@
+package controlador;
+
+import modelo.Coche;
+
+public class Ejecucion {
+
+	public static void main(String[] args) {
+		
+		// creamos nuestro primer objeto coche
+		Coche coche1 = new Coche(); // puedo no pasarle los parametros porque tengo un constructor vacío.
+		
+		// establecemos los atributos
+		coche1.setMarca("Seat");
+		coche1.setColor("rojo");
+		coche1.setModelo("Ibiza");
+		coche1.setKm(12000);
+		coche1.setPrecio(45000); 
+		
+		// como tenemos un constructor con todos los atributos, ahora podemos pasar todos los parámetros
+		Coche coche2 = new Coche("BMW", "316", 55000, "Negro", 650000);
+		
+	}
+
+}

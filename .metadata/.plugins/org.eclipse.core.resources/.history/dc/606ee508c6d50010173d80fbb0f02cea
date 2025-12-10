@@ -1,0 +1,104 @@
+package modelo;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Flota {
+	
+	// atributo privado
+	
+	private ArrayList<Nave> naves;
+	
+	
+	// constructor
+	
+	public Flota() {
+		
+		naves = new ArrayList<Nave>();
+		
+	}
+	
+	// Métodos
+	
+	/**
+	 * Agrega una nave al arraylist de naves con add()
+	 * @param nave
+	 */
+	public void agregarNave(Nave nave) {
+		
+		this.naves.add(nave); 
+	}
+	
+	
+	
+	public void crearNaveDesdeTeclado(Scanner sc) {
+		
+		System.out.println("\n--- NUEVA NAVE ---");
+		
+		Nave nave = new Nave(); 
+		
+		System.out.println("Dime el nombre: ");
+		nave.setNombre(sc.nextLine());
+		
+		Faccion faccion = null;     
+	    while (faccion == null) {        
+	        System.out.println("Dime la facción (Tierra, Marte o Cinturon): ");
+	       
+	        String entrada = sc.nextLine().trim().toUpperCase();
+	        
+	        // Compruebo la cadena manualmente
+	        if (entrada.equals("TIERRA")) {
+	            faccion = Faccion.TIERRA;
+	        } else if (entrada.equals("MARTE")) {
+	            faccion = Faccion.MARTE;
+	        } else if (entrada.equals("CINTURON")) {
+	            faccion = Faccion.CINTURON;
+	        } else {
+	            // Si no coincide lanzo error y vuelvo a pedir
+	            System.err.println("¡ERROR! Facción '" + entrada + "' no válida. Debe ser Tierra, Marte o Cinturon. Inténtalo de nuevo.");
+	        }
+	    }
+	   
+	    nave.setFaccion(faccion);
+		
+			
+		System.out.println("Dime el número de misiles: ");
+		nave.setMisiles(sc.nextInt());
+		sc.nextLine();
+		
+		System.out.println("¿Necesita reparación (S/N)?: ");
+		char decision = sc.nextLine().toUpperCase().charAt(0);
+
+		if (decision == 'S') {
+		    nave.setNecesitaReparacion(true);
+		} else {
+		    nave.setNecesitaReparacion(false);
+		}		
+		
+		this.agregarNave(nave);
+		
+		System.out.println("\n¡Nave " + nave.getNombre() + " creada y añadida a la flota!");
+		
+	}
+		
+	/**
+	 * Con el método size() mide el tamaño de la lista naves
+	 * @return tamaño de la lista
+	 */
+	public int getNumeroNaves() {
+	    return this.naves.size(); 
+	}
+	
+	
+	public void listarTodas() {
+		
+		for (Nave nave : naves) {
+			
+			System.out.println(nave.toString());
+			
+		}
+	}
+	
+	
+	
+}

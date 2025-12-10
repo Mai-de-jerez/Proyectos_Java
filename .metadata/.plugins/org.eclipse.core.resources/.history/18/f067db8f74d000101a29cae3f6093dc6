@@ -1,0 +1,25 @@
+package modelo;
+
+public class Parking {
+
+	private Coche[] lista;
+	private int posicion;
+	
+	public Parking (int tamano) {
+		
+		this.lista = new Coche[tamano];
+		posicion = 0;
+	}
+	
+	public void anadir(Coche c) {
+		
+		if(posicion < lista.length) {
+		lista[posicion] = c;
+		posicion++;
+		}
+	}
+	
+	
+	
+	
+}

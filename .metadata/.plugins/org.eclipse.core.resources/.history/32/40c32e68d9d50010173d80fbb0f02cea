@@ -1,0 +1,155 @@
+package controlador;
+
+import java.util.Scanner;
+import modelo.Flota;
+import modelo.Nave;
+
+public class ControlFlota {
+
+	// ------------------------
+	// Métodos auxiliares
+	// ------------------------
+	
+	private static void mostrarMenu() {
+    	
+    	System.out.println("=== CONTROL DE FLOTA - GUERRA DEL SISTEMA SOLAR ===");
+    	System.out.println("1. Añadir nave (datos por teclado)");
+    	System.out.println("2. Añadir nave (creada en el main)");
+    	System.out.println("3. Listar todas las naves");
+    	System.out.println("4. Listar naves que necesitan reparación");
+    	System.out.println("5. Mostrar número total de naves");
+    	System.out.println("6. Mostrar número total de misiles");
+    	System.out.println("7. Listar naves por facción");
+    	System.out.println("8. Contar naves por facción");
+    	System.out.println("0. Salir");
+    	System.out.print("Elige una opción: ");
+    }
+    
+    private static int leerEnteroSeguro(Scanner sc) {
+    	while (true) {
+    		try {
+    			int valor = Integer.parseInt(sc.nextLine());
+    			return valor;
+    		} catch (NumberFormatException e) {
+    			System.out.print("Introduce un número válido: ");
+    		}
+    	}
+    }
+	
+	public static void main(String[] args) {
+		
+		
+		// Crear un objeto Scanner y un objeto Flota.
+		Scanner sc = new Scanner(System.in);
+		Flota flota = new Flota();
+		
+		// Opcionalmente, crear algunas naves iniciales por código (por ejemplo naves típicas de The Expanse) 
+		// y añadirlas a la flota con agregarNave()
+		// Las creamos
+        Nave nave1 = new Nave("Odisea", "tierra", 5, true);
+        Nave nave2 = new Nave("Truman", "marte", 6, false);
+        Nave nave3 = new Nave("Tynan", "cinturon", 9, false);
+        Nave nave4 = new Nave("Anubis", "jupiter", 11, true);
+        
+        // Las añadimos a la miflota
+        flota.agregarNave(nave1);
+        flota.agregarNave(nave2);
+        flota.agregarNave(nave3);
+        flota.agregarNave(nave4); 
+        
+        //  Implementar un menú por consola que se repita hasta que el usuario elija salir (puedes usar 
+        // while o do-while)
+	
+        /*
+         * El menú deberá tener, como mínimo, estas opciones:
+         * 
+         * 1. Añadir nave pidiendo datos por teclado
+         * 		Llamar a crearNaveDesdeTeclado(sc).
+         * 2. Añadir nave creada en el main
+         * 		Crear un objeto Nave directamente en el main (con valores que tú pongas) y añadirlo a la flota 
+         * 		con agregarNave();
+         * 3. Listar todas las naves
+         *		Llamar a listarTodas()
+         * 4. Listar naves que necesitan reparación
+         *		Llamar a listarNavesParaReparar()
+         * 5. Mostrar número total de naves
+         * 		Llamar a getNumeroNaves() y mostrar el resultado.
+         * 6. Mostrar número total de misiles de la flota
+         * 		Llamar a getTotalMisiles() y mostrar el resultado.
+         * 7. Listar naves por facción
+         *		Pedir al usuario una facción (Tierra, Marte o Cinturon) y llamar a listarPorFaccion(faccion)
+         * 8. Mostrar cuántas naves hay de una facción
+         * 		Pedir al usuario una facción y llamar a contarPorFaccion(faccion). 
+         * 		Mostrar el resultado.
+         * 9. Salir del programa.
+         */
+        
+        int opcion;
+        
+        do {
+        	mostrarMenu();
+        	opcion = leerEnteroSeguro(sc);
+        	
+        	switch (opcion) {
+        		case 1:
+        			// Crear nave con Scanner
+        			flota.crearNaveDesdeTeclado(sc);
+        			break;
+        		case 2:
+			        // Crear nave desde el propio main
+			        Nave n = new Nave("Nauvoo", "Cinturon", 80, false);
+			        flota.agregarNave(n);
+			        System.out.println("Nave creada desde main y añadida: " + n);
+			        break;
+		        case 3:
+			        flota.listarTodas();
+			        break;
+		        case 4:
+			        flota.listarNavesParaReparar();
+			        break;
+		        case 5:
+			        System.out.println("Número total de naves: " + flota.getNumeroNaves());
+			        break;
+		        case 6:
+			        System.out.println("Misiles totales en la flota: " + flota.getTotalMisiles());
+			        break;
+		        case 7:
+			        System.out.print("Introduce la facción (Tierra/Marte/Cinturon): ");
+			        String fac = sc.nextLine();
+			        flota.listarPorFaccion(fac);
+			        break;
+		        case 8:
+			        System.out.print("Introduce la facción (Tierra/Marte/Cinturon): ");
+			        String fac2 = sc.nextLine();
+			        int num = flota.contarPorFaccion(fac2);
+			        System.out.println("Número de naves de la facción " + fac2 + ": " + num);
+			        break;
+		        case 0:
+		        	
+			        System.out.println("Saliendo del sistema de control de flota...");
+			        break;
+			        
+		        default:
+		        	System.out.println("Opción no válida.");
+	        	}
+	        
+	        	System.out.println();
+	        	
+	        } while (opcion != 0);
+	        
+	        sc.close();
+	
+		}
+
+
+		
+     
+    
+      
+            
+
+        
+       
+	
+
+}

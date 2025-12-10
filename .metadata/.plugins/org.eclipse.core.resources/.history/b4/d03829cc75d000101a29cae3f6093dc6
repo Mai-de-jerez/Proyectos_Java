@@ -1,0 +1,49 @@
+package controlador;
+
+import modelo.Coche;
+import modelo.Parking;
+
+public class Ejecucion {
+
+	public static void main(String[] args) {
+		
+		// creamos nuestro primer objeto coche
+		Coche coche1 = new Coche(); // puedo no pasarle los parametros porque tengo un constructor vacío.
+		
+		// establecemos los atributos
+		coche1.setMarca("Seat");
+		coche1.setColor("rojo");
+		coche1.setModelo("Ibiza");
+		coche1.setKm(5000);
+		coche1.setPrecio(12000); 
+		
+		// como tenemos un constructor con todos los atributos, ahora podemos pasar todos los parámetros
+		Coche coche2 = new Coche("BMW", "316", 55000, "Negro", 650000);
+		
+		// probamos el constructor de 2 parámetros
+		Coche coche3 = new Coche ("Opel", "Insignia");
+		
+		// imprimir las caracteristicas de los coches
+		System.out.println("\n--- CARACTERISTICAS ---");
+		System.out.println(coche1.toString());
+		System.out.println(coche2.toString());
+		System.out.println(coche3.toString());
+		
+		System.out.println("\nKm en millas del coche 1: "+ coche1.dameMillas());
+		
+		// Recordar que en Java todos los objetos heredan de Object (una clase predeterminada de Java)
+		// Todos los metodos tienen un método toString que hace que saquen los datos
+	    
+		// creamos un objeto de la clase parking
+		Parking p1 = new Parking(4);
+		
+		p1.anadir(coche1);
+		p1.anadir(coche2);
+		p1.anadir(coche3);
+		
+		p1.imprimirMarcas();
+		
+	
+	} 
+
+}
