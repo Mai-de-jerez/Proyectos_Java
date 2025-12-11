@@ -18,10 +18,6 @@ public class Flota {
 		
 	}
 	
-	// Getter para el atributo naves 
-	public ArrayList<Nave> getNaves() {
-		return naves;
-	}
 	
 	// Métodos
 	

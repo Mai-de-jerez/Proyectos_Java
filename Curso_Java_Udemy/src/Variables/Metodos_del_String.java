@@ -48,7 +48,7 @@ public class Metodos_del_String {
 		System.out.println("Imprimir trabalenguas: "+ trabalenguas);
 		// indexOf() para buscar la posicion de un caracter
 		System.out.println("Encontrar la posición de la letra a en trabalenguas con indexOf(): "+ trabalenguas.indexOf("a"));
-		// encontrar con indexOf() la ultima ocurrencia de un caracter
+		// encontrar con lastIndexOf() la ultima ocurrencia de un caracter
 		System.out.println("Encontrar la última ocurrencia de la letra a en trabalenguas con lastIndexOf(): "+ trabalenguas.lastIndexOf("a"));
 		// si no encuentra el caracter retorna -1
 		// Saber si se encuentra el caracter en el string

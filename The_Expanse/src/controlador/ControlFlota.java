@@ -51,11 +51,12 @@ public class ControlFlota {
         Nave nave3 = new Nave("Tynan", "cintuROn", 9, false);
         Nave nave4 = new Nave("Anubis", "tieRRa", 11, true);
         
-        // Las añadimos a la miflota
+        // Las añadimos a la miflota con agregar nave()
         flota.agregarNave(nave1);
         flota.agregarNave(nave2);
         flota.agregarNave(nave3);
         flota.agregarNave(nave4); 
+              
         
         //  Implementar un menú por consola que se repita hasta que el usuario elija salir (puedes usar 
         // while o do-while)
@@ -83,6 +84,7 @@ public class ControlFlota {
          * 		Mostrar el resultado.
          * 9. Salir del programa.
          */
+
         
         int opcion;
         
@@ -97,7 +99,7 @@ public class ControlFlota {
         			break;
         		case 2:
 			        // Crear nave desde el propio main
-			        Nave n = new Nave("Nauvoo", "Cinturon", 80, false);
+        			Nave n = new Nave("Nauvoo", "Cinturon", 80, false);
 			        flota.agregarNave(n);
 			        System.out.println("Nave creada desde main y añadida: " + n);
 			        break;
@@ -138,18 +140,9 @@ public class ControlFlota {
 	        } while (opcion != 0);
 	        
 	        sc.close();
+         	
 	
 		}
-
-
 		
-     
-    
-      
-            
-
-        
-       
-	
 
 }
