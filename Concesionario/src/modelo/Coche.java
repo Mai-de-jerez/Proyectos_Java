@@ -1,5 +1,8 @@
 package modelo;
 
+/**
+ * @deprecated Clase reemplazada {@link Vehículo}
+ */
 public class Coche {
 	
 	// atributos que tendrá el objeto
@@ -87,6 +90,11 @@ public class Coche {
 		return color;
 	}
 
+	/**
+	 * 
+	 * @param color
+	 * @deprecated Clase reemplazada {@link Turismo}
+	 */
 	public void setColor(String color) {
 		this.color = color;
 	}

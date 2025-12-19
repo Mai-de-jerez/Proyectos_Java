@@ -6,9 +6,14 @@ public class Automovil {
 	private int id;
 	private String fabricante;
 	private String modelo;
-	private Color color = Color.GRIS ; // ahora que creamos el enum color debe ser de tipo Clor y no de tipo String
-	private double cilindrada;
-	private int capacidadEstanque = 40;
+	private Motor motor;
+	private Estanque estanque;
+	private Persona conductor;
+	private Rueda[] ruedas; 
+	private int indiceRuedas;
+	// privados que ahora son de tipo enum y no string
+	private Color color = Color.GRIS ; 
+	private TipoAutomovil tipo;
 	
 	// Atributos privados estáticos (lo tienen todos los objetos de la clase)
 	// Se accede a ellos a través del nombre de la clase
@@ -28,12 +33,14 @@ public class Automovil {
 	
 	
 	
-	// Crear constructores
+	// CONSTRUCTORES:
+	
 	public Automovil() {
 		this.id = ++ultimoId;
+		this.ruedas = new Rueda[5];
 	}
 	
-	// sobrecarga de constructores
+	// Sobrecarga de constructores
 	public Automovil(String fabricante, String modelo) {
 		this();
 		this.fabricante = fabricante;
@@ -47,16 +54,35 @@ public class Automovil {
 	}
 	
 	
-	public Automovil(String fabricante, String modelo, Color color, double cilindrada) {
+	public Automovil(String fabricante, String modelo, Color color, Motor motor) {
 		this(fabricante, modelo, color);
-		this.cilindrada = cilindrada;
+		this.motor = motor;
 	}
 	
 	
-	public Automovil(String fabricante, String modelo, Color color, double cilindrada, int capacidadEstanque) {
-		this(fabricante, modelo, color, cilindrada);
-		this.capacidadEstanque = capacidadEstanque;
+	public Automovil(String fabricante, String modelo, Color color, Motor motor, Estanque estanque) {
+		this(fabricante, modelo, color, motor);
+		this.estanque = estanque;
 	}
+	
+	/**
+	 * @param fabricante
+	 * @param modelo
+	 * @param motor
+	 * @param estanque
+	 * @param conductor
+	 * @param ruedas
+	 * @param color
+	 */
+	public Automovil(String fabricante, String modelo, Motor motor, Estanque estanque, Persona conductor,
+			Rueda[] ruedas, Color color) {
+		this(fabricante, modelo, color, motor, estanque);
+		this.conductor = conductor;
+		this.ruedas = ruedas;
+
+	}
+
+	// GETTERS AND SETTERS
 
 	// como los métodos son privados no se pueden leer desde fuera de la clase
 	// hay que hacerlo asi, POR CONVENCION SE USA get
@@ -89,14 +115,6 @@ public class Automovil {
 	}
 	
 	
-	public double getCilindrada() {
-		return this.cilindrada;
-	}
-	
-	public int getCapacidadEstanque() {
-		return this.capacidadEstanque;
-	}
-	
 	public static int getCapacidadEstanqueEstatico() {
 		return capacidadEstanqueEstatico;
 	}
@@ -111,13 +129,6 @@ public class Automovil {
 		this.modelo = modelo;
 	}
 	
-	public void setCilindrada(double cilindrada) {
-		this.cilindrada = cilindrada;
-	}
-	
-	public void setCapacidadEstanque(int capacidadEstanque) {
-		this.capacidadEstanque = capacidadEstanque;
-	}
 
 
 	public static void setCapacidadEstanqueEstatico(int capacidadEstanqueEstatico) {
@@ -133,17 +144,121 @@ public class Automovil {
 	}
 	
 	
-	// Métodos:
+	/**
+	 * @return el motor
+	 */
+	public Motor getMotor() {
+		return motor;
+	}
 
+	/**
+	 * @param motor el motor a establecer
+	 */
+	public void setMotor(Motor motor) {
+		this.motor = motor;
+	}
+
+	/**
+	 * @return el estanque
+	 */
+	public Estanque getEstanque() {
+		if(estanque==null) {
+			this.estanque= new Estanque();
+		}
+		return estanque;
+	}
+
+	/**
+	 * @param estanque el estanque a establecer
+	 */
+	public void setEstanque(Estanque estanque) {
+		this.estanque = estanque;
+	}
+	
+	
+
+	/**
+	 * @return el conductor
+	 */
+	public Persona getConductor() {
+		return conductor;
+	}
+
+	/**
+	 * @param conductor el conductor a establecer
+	 */
+	public void setConductor(Persona conductor) {
+		this.conductor = conductor;
+	}
+
+	/**
+	 * @return el ruedas
+	 */
+	public Rueda[] getRuedas() {
+		return ruedas;
+	}
+
+	/**
+	 * @param ruedas el ruedas a establecer
+	 */
+	public void setRuedas(Rueda[] ruedas) {
+		this.ruedas = ruedas;
+	}
+
+	public TipoAutomovil getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(TipoAutomovil tipo) {
+		this.tipo = tipo;
+	} 
+	
+	// MÉTODOS:
+	
+
+	/*
+	 * Método para añadir las ruedas de una en una y valida que no metas mas de 5
+	 * @param rueda
+	 */
+	public Automovil addRueda(Rueda rueda) {
+		if(indiceRuedas < this.ruedas.length) {
+		this.ruedas[indiceRuedas++] = rueda;
+		}
+		
+		return this; 
+	}
+	
 	// Método que imprime el detalle del vehiculo
 	public String verDetalle() {
-		return  "\nId de auto: "+this.id + 
+		String detalle = "\nId de auto: "+ this.id + 
 				"\nFabricante auto: "+ this.getFabricante() +
-				"\nModelo auto: "+ this.getModelo() +
-				"\nColor auto: "+ this.color +
-				"\nCilindrada auto: "+ this.getCilindrada() +
-				"\nColor patente: "+ colorPatente; 
-	}   
+				"\nModelo auto: "+ this.getModelo();
+				
+		if(this.getTipo() != null) {
+			
+				detalle +="\nTipo Automóvil: "+ this.getTipo().getDescripcion();
+		}
+		
+		detalle += "\nColor auto: "+ this.color +
+			"\nColor patente: "+ colorPatente;
+		
+		if(this.motor != null) {
+			detalle += "\nCilindrada auto: "+ this.motor.getCilindrada();
+		}
+		
+		if(conductor!=null) {
+			detalle += "\nConductor: "+ this.getConductor();
+		}
+		
+		if(getRuedas()!=null) {
+			detalle += "\nRuedas del Automóvil: ";
+			for (Rueda r: this.getRuedas()) {
+				detalle += "\nFabricante: " + r.getFabricante() + ", aro: " + r.getAro() + ", ancho: " + r.getAncho();
+			}
+		}
+		
+		return detalle;
+	}    
 	
 	/* Método que imprime el detalle del vehiculo (otra forma)
 	   
@@ -173,11 +288,11 @@ public class Automovil {
 	
 	// sobrecarga de métodos
 	public float calcularConsumo(int km, float porcentajeBencina) {
-		return km/(capacidadEstanque*porcentajeBencina);
+		return km/(this.getEstanque().getCapacidad()*porcentajeBencina);
 	}
 	
 	public float calcularConsumo(int km, int porcentajeBencina) {
-		return km/(capacidadEstanque*(porcentajeBencina/100f));
+		return km/(this.getEstanque().getCapacidad()*(porcentajeBencina/100f));
 	}
 	
 	public static float calcularConsumoEstatico(int km, int porcentajeBencina) {

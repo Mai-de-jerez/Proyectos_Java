@@ -10,17 +10,22 @@ public enum Faccion {
     CINTURON("Cinturón"); 
 
     // Atributo privado para guardar el nombre de visualización
-    private final String nombreVisible;
+    private final String faccion;
 
     // Constructor del ENUM (solo puede ser privado)
-    Faccion(String nombreVisible) {
-        this.nombreVisible = nombreVisible;
+    Faccion(String faccion) {
+        this.faccion = faccion; 
     }
 
-    // Método público para obtener el nombre visible
-    public String getNombreVisible() {
-        return nombreVisible;
+    // Método getter
+    public String getFaccion() {
+        return faccion; 
     }
+    
+    @Override
+	public String toString() {
+		return this.faccion;
+	}
     
     
 }

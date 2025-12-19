@@ -1,0 +1,157 @@
+package Modelos;
+
+public class Auror extends Hechicero {
+
+	// Atributos	
+	private int experienciaCombate;
+	private int arrestos;
+	
+	
+	// Constructor
+	
+	/*
+	 * @param nombre (hereda de Hechicero)
+	 * @param casa (hereda de Hechicero)
+	 * @param experienciaCombate
+	 * @param arrestos
+	 */
+	public Auror(String nombre, Casa casa) {
+		super(nombre, casa);
+		this.setVida(this.vida + 20);
+		this.setMana(this.mana + 20);
+		this.setNivel(this.nivel + 1);
+		this.setTorpeza(10); // me cargo la torpeza del hechicero y le pongo 10
+		this.setControlVarita(60); // me cargo el control de varita del hechicero y le pongo 60
+		this.experienciaCombate = 30; // Ponemos 30 porque es un auror inicial y no va empezar en 0.
+		this.arrestos = 0; // partimos de 0 arrestos
+	}
+
+	
+	// Getters y Setters
+	
+	/*
+	 * @return el experienciaCombate
+	 */
+	public int getExperienciaCombate() {
+		return experienciaCombate;
+	}
+
+
+	/**
+	 * @param experienciaCombate el experienciaCombate a establecer
+	 */
+	public void setExperienciaCombate(int experienciaCombate) {
+		this.experienciaCombate = experienciaCombate;
+	}
+
+
+	/**
+	 * @return el num de arrestos
+	 */
+	public int getArrestos() {
+		return arrestos;
+	}
+
+
+	/**
+	 * @param arrestos el arrestos a establecer
+	 */
+	public void setArrestos(int arrestos) {
+		this.arrestos = arrestos;
+	}
+	
+	
+	// Otros métodos
+	
+	// Su ficha
+    public String ficha() {
+        return super.ficha() +
+               "\nExperiencia en Combate: " + experienciaCombate + 
+               "\nArrestos: " + arrestos;
+    }
+	
+	// En este método, el auror patrulla, aumentando su experiencia en combate en 15 puntos cada vez.
+	
+	public void patrullar() {
+		this.experienciaCombate += 5;
+		System.out.println("El auror " + getNombre() + " ha entrenado en combate. Experiencia actual: " + this.experienciaCombate);
+	}
+	
+	/*
+	 * El auror intenta arrestar a un aprendiz. Si la vida del aprendiz es menor a 30, lo consigue, 
+	 * aumenta su experiencia en combate en 15 y el número de arrestos en 1.
+	 * @param aprendiz: el aprendiz a arrestar
+	 * @return esArrestado: true si el arresto fue exitoso, false en caso contrario
+	 */
+	public boolean arrestar(Aprendiz aprendiz) {
+	    boolean esArrestado = false;
+	    
+		if (aprendiz.getVida() <30) {
+			esArrestado = true;
+			this.experienciaCombate += 10;
+			this.arrestos += 1;
+			System.out.println("El aprendiz " + aprendiz.getNombre() + "ha sido arrestado con éxito.");
+		} else {
+			System.out.println("El aprendiz " + aprendiz.getNombre() + "tiene demasiada vida y se ha escapado de tu arresto.");
+		}	
+		return esArrestado; 		
+	}
+	
+	
+	/*
+	 * Lanza un hechizo de combate, calculando el daño final basado en el hechizo, la experiencia y la torpeza.
+	 * Valida nulls y que el nivel de vida no sea 0 y el mana sea mayor o igual que 5 por el gasto que conlleva
+	 * Valida que el Auror no use hechizos que no conoce
+	 * @param hechizo: el hechizo a lanzar
+	 * @return danio: el daño final del hechizo lanzado (num entero)
+	 */
+	public int lanzarHechizo(String hechizo) {
+		if (hechizo == null || this.mana < 5 || this.vida <= 0) {
+	    	System.out.println("El Auror " + getNombre() + " está demasiado agotado para lanzar magia o no eligió hechizo.");
+	    	return 0;
+	    }
+
+	    int danioBase = 0;
+	
+	    if (hechizo.equalsIgnoreCase("Expecto Patronum") || hechizo.equalsIgnoreCase("Protego")) {
+	        System.out.println("El Auror " + getNombre() + " lanza un hechizo de protección y ahora tu magia no puede dañarle.");
+	        danioBase = 70;
+	    } else if (hechizo.equalsIgnoreCase("Expelliarmus") || hechizo.equalsIgnoreCase("Stupefy")) {
+	        System.out.println("El Auror " + getNombre() + " lanza un hechizo aturdidor y te ha apagado por completo!.");
+	        danioBase = 50;
+	    } else if (hechizo.equalsIgnoreCase("Lumos") || hechizo.equalsIgnoreCase("Alohomora")) {
+	        System.out.println("El Auror " + getNombre() + " realiza magia básica con efectividad impropia del hechizo.");
+	        danioBase = 40;
+	        
+	    } else if (hechizo.equalsIgnoreCase("Vulnera Sanentur") || hechizo.equalsIgnoreCase("Piertotum Locomotor")){
+	        System.out.println("El Auror " + getNombre() + " no tiene acceso a ese hechizo!.");
+	        return 0;
+	    } else {
+	        System.out.println("El Auror " + getNombre() + " se equivocó de hechizo, te libraste por los pelos.");
+	        danioBase = 5; 
+	    }
+
+	    this.mana -= 5; 
+	    
+	    return danioBase + (this.experienciaCombate - this.getTorpeza()); 
+	}
+	
+	
+	
+	// Devuelve el detalle del Auror
+	
+	@Override
+	public String toString() {
+		return "Auror [Nombre=" + getNombre() + 
+				", nivel=" + nivel +
+				", vida=" + vida + 
+				", mana=" + mana + 
+				", casa=" + casa +
+				", torpeza=" + getTorpeza() +
+				", Control varita=" + getControlVarita() +
+				", arrestos=" + arrestos + 
+				", experienciaCombate=" + experienciaCombate + "]";
+	}
+	
+
+}

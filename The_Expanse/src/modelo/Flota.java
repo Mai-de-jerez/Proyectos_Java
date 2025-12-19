@@ -202,7 +202,7 @@ public class Flota {
 	    }
 
 	    if (!encontradas) {
-	        System.out.println("No se encontraron naves para la facción " + faccionBuscada.getNombreVisible() + ".");
+	        System.out.println("No se encontraron naves para la facción " + faccionBuscada.getFaccion() + ".");
 	    }
 	    
 	}

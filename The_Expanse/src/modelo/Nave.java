@@ -94,7 +94,7 @@ public class Nave {
 	
 	@Override
 	public String toString() {
-		return "Nave [nombre=" + nombre + ", faccion=" + this.faccion.getNombreVisible() + ", misiles=" + misiles + ", necesitaReparacion="
+		return "Nave [nombre=" + nombre + ", faccion=" + this.faccion.getFaccion() + ", misiles=" + misiles + ", necesitaReparacion="
 				+ necesitaReparacion + "]";
 	} 
 	

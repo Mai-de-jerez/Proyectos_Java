@@ -10,14 +10,19 @@ public class EjemploAutomovil {
 		// nuevo objeto de la clase Automovil
 		Automovil subaru = new Automovil("Subaru", "Impreza");
 		subaru.setColor(Color.BLANCO); 
-		subaru.setCilindrada(2.0); 
+		Motor motorSubaru = new Motor(2.0, TipoMotor.BENCINA);
+		subaru.setMotor(motorSubaru); 
+		subaru.setColor(Color.BLANCO);
+		subaru.setEstanque(new Estanque());
 		
 		// objeto numero 2
-		Automovil mazda = new Automovil("Mazda","BT-50", Color.AZUL, 3.0); 
-		
+		Automovil mazda = new Automovil("Mazda","BT-50", Color.AZUL, new Motor(3.0, TipoMotor.DIESEL)); 
+		mazda.setEstanque(new Estanque(45));
 		// objetos numero 3 y 4
-		Automovil nissan = new Automovil("Nissan", "Navara", Color.ROJO, 3.5, 50);
+		Automovil nissan = new Automovil("Nissan", "Navara", Color.ROJO, new Motor(3.5, TipoMotor.DIESEL), new Estanque(50));
 		Automovil opel = new Automovil("Opel", "Vectra");
+		opel.setMotor(new Motor(4.0, TipoMotor.DIESEL));
+		opel.setEstanque(new Estanque());
 		
 		// Vemos el resultado
 		System.out.println("\n--- Características ---");
@@ -39,7 +44,7 @@ public class EjemploAutomovil {
 		
 		
 		// si creo otro objeto exactamente igual a nissan los detecta diferentes
-		Automovil nissan2 = new Automovil("Nissan", "Navara", Color.GRIS, 3.5, 50);
+		Automovil nissan2 = new Automovil("Nissan", "Navara", Color.GRIS, new Motor(3.5, TipoMotor.BENCINA), new Estanque(50));
 		System.out.println("Son iguales?? " + (nissan==nissan2));
 		// como == compara objetos dice que false
 		System.out.println("Son iguales?? " + (nissan.equals(nissan2)));
