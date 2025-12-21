@@ -9,10 +9,10 @@ import Modelos.Profesor;
 
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) { 
 		
 		// Vamos a crear varios objetos de las diferentes clases
-		Mago mago = new Mago("Avatar", Casa.HUFFLEPUFF);
+		Mago mago = new Mago("Mago de pacotilla", Casa.HUFFLEPUFF);
 		Aprendiz harry = new Aprendiz("Harry Potter", Casa.GRYFFINDOR);
 		Aprendiz ron = new Aprendiz("Ron Weasley", Casa.GRYFFINDOR);
 		Aprendiz hermione = new Aprendiz("Hermione Granger", Casa.GRYFFINDOR);
@@ -45,62 +45,66 @@ public class Main {
 		
 		// Vamos a probar a que los distintios magos usen hechizos nulos
 		System.out.println("\n--- Lanzamiento de hechizos nulos ---\n");
-		System.out.println(mago.lanzarHechizo(null));
-		System.out.println(snape.lanzarHechizo(null));
-		System.out.println(dumbledore.lanzarHechizo(null));
+		mago.lanzarHechizo(null);
+		snape.lanzarHechizo(null);
+		dumbledore.lanzarHechizo(null);
+		harry.lanzarHechizo(null);
+		ron.lanzarHechizo(null);
 		
-		System.out.println("\n--- Lanzamiento de hechizos prohibidos para un determinado mago ---\n");
-		System.out.println(mago.lanzarHechizo("Lumos"));
-		System.out.println(snape.lanzarHechizo("Expecto Patronum"));
-		System.out.println(dumbledore.lanzarHechizo("Piertotum Locomotor"));
-		System.out.println(ron.lanzarHechizo("Expelliarmus"));
+		// Vamos a probar a que los distintios magos usen hechizos que no deberian conocer
+		System.out.println("\n--- Lanzamiento de hechizos que el mago no conoce ---\n");
+		mago.lanzarHechizo("Lumos");
+		dumbledore.lanzarHechizo("Expecto Patronum");
+		snape.lanzarHechizo("Abracadabra");
+		harry.lanzarHechizo("Stupefy");
+		nympha.lanzarHechizo("Piertotum Locomotor");
 		
-		System.out.println("\n--- Usamos lanzarHechizo(), practicarBasico(), descansar() y recibirDano()) ---");
+		// Vamos a probar a que los distintios magos usen hechizos que no deberian conocer
+		System.out.println("\n--- Lanzamiento de hechizos que el mago conoce porque hereda---\n");
+		
+		nympha.lanzarHechizo("Expelliarmus");
+		snape.lanzarHechizo("Lumos");
+		dumbledore.lanzarHechizo("alohomora");
+		
+		// Vamos a probar a que los distintios magos usen hechizos que conocen porque son de su clase
+		System.out.println("\n--- Lanzamiento de hechizos que el mago conoce porque son de su clase ---\n");
+		
+		harry.lanzarHechizo("Lumos");
+		dumbledore.lanzarHechizo("Expelliarmus");
+		nympha.lanzarHechizo("protego");
+		snape.lanzarHechizo("Piertotum Locomotor");
+		
+		
 		System.out.println("\n--- Ron aniquila a Hermione ---\n");
-		System.out.println(ron.lanzarHechizo("Lumos")); // devuelve de daño 14 por su torpeza
+		System.out.println(ron.lanzarHechizo("Lumos")); // devuelve de daño 20 por su torpeza
 		ron.practicarBasico(); // Practicamos para reducir torpeza
 		ron.practicarBasico();
-		ron.practicarBasico(); // Torpeza ahora 45 en vez de 60
-		System.out.println(ron.lanzarHechizo("Lumos")); // devuelve de daño 26 por su torpeza reducida
+		ron.practicarBasico(); // Torpeza ahora 30 en vez de 60
+		System.out.println(ron.lanzarHechizo("Lumos")); // devuelve de daño 40 por su torpeza reducida
 		ron.descansar();
-		ron.descansar();
-		ron.descansar(); // necesitamos mana para el siguiente hechizo
 		int dañoCausado = ron.lanzarHechizo("Lumos");
-		System.out.println("Vida de Hermione: "+ hermione.getVida()); // miramos la vida de Hermione antes del ataque
 		hermione.recibirDano(dañoCausado); // Hermione recibe el daño causado por Ron
-		hermione.recibirDano(dañoCausado); // nos cebamos con ella
-		hermione.recibirDano(dañoCausado); // y la dejamos K.O.
+		hermione.recibirDano(dañoCausado); // otro ataque y la dejamos K.O.
 		// Si ahora Hermione intenta lanzar un hechizo, no podrá porque está K.O.
-		System.out.println(hermione.lanzarHechizo("Alohomora"));
+		System.out.print("Mensaje para Hermione => "); hermione.lanzarHechizo("Alohomora");
 		
-		System.out.println("\n--- Venganza de Hermione (usamos entrenar() como novedad) ---\n");
+		System.out.println("\n--- Venganza de Hermione ---\n");
 		// Mejoramos a Hermiones su vida y mana para siguientes pruebas
-		hermione.descansar();// descanso
-		hermione.descansar();
-		hermione.descansar();
-		hermione.descansar();
-		hermione.descansar();
-		hermione.entrenar(); // entrenamiento
-		hermione.entrenar();
-		hermione.entrenar();
-		hermione.descansar(); // más descanso
-		hermione.descansar();
-		hermione.descansar();
+		hermione.descansar();// descanso para recuperarse
+
 		// Ahora Hermione se vengará de Ron
 		int venganza = hermione.lanzarHechizo("Alohomora");
 		// como el daño causado es leve practicamos basico
 		hermione.practicarBasico(); // Practicamos para reducir torpeza
 		hermione.practicarBasico();
 		hermione.practicarBasico();
-		hermione.descansar(); // más descanso
-		hermione.descansar();
-		hermione.descansar();
+		
 		venganza = hermione.lanzarHechizo("Alohomora");
 		// A por él!
 		ron.recibirDano(venganza);
 		ron.recibirDano(venganza);
 		ron.recibirDano(venganza);
-		ron.recibirDano(venganza);
+		System.out.print("Mensaje para Ron => "); ron.lanzarHechizo("Alohomora");
 	
 		System.out.println("\n--- Usamos métodos de Hechiceros ---\n");
 	
@@ -121,7 +125,7 @@ public class Main {
 		
 		System.out.println("El Auror Nymphadora Tonks tiene "+ nympha.getArrestos() + " arrestos y su experiencia en combate es de "+nympha.getExperienciaCombate());
 		
-		System.out.println(hermione.getVida()); // ojo la vida de hermione es mayor a 30
+		System.out.println("Vida actual de Hermione: "+ hermione.getVida()); // ojo la vida de hermione es mayor a 30
 		
 		System.out.println("¿Está arrestada Hermione?: " + nympha.arrestar(hermione));
 		
@@ -129,9 +133,9 @@ public class Main {
 	
 		System.out.println("\n--- Uso métodos Profesores ---\n");
 		
-		System.out.println(snape.getAsignatura()); 
+		System.out.println("Asignatura que da Snape actualmente: "+ snape.getAsignatura()); 
 		snape.setAsignatura("Artes Oscuras"); // no me gusta la cambio
-		System.out.println(snape.getAsignatura());
+		System.out.println("Asignatura que da Snape ahora: "+snape.getAsignatura());
 		// Evaluar para ganar el sueldo y ganar prestigio
 		snape.evaluar();
 		snape.evaluar();
@@ -150,37 +154,28 @@ public class Main {
 		harry.practicarBasico();
 		harry.practicarBasico();
 		harry.practicarBasico();
-		harry.practicarBasico();
-		harry.practicarBasico();
+		
 		harry.descansar();
-		harry.descansar();
-		harry.descansar();
+		
 		
 		// Al ataque!!
 		int ataqueHarry = harry.lanzarHechizo("Lumos");
 		dumbledore.recibirDano(ataqueHarry);
 		// Harry descansa porque se la ve venir
 		harry.descansar();
-		harry.descansar();
-		harry.descansar();
+		
 		// Dumbledore responde!
 		int ataqueDumble = dumbledore.lanzarHechizo("Stupefy");
 		harry.recibirDano(ataqueDumble);
 		// harry descansa y descansa
-		harry.descansar();
 		harry.descansar();
 		// Ataca también a Ron y lo deja fuera de combate!
 		ron.recibirDano(ataqueDumble);
 		// Hermione se la ve venir y se pone a correr
 		nympha.arrestar(hermione);
 		// Tendrán que hacer un ataque conjunto para destruir a dumbledore
-		harry.descansar();
-		harry.descansar();
-		harry.descansar();
-		harry.descansar();
-		hermione.descansar();
-		hermione.descansar();
-		hermione.descansar();
+		// Hermione se prepara
+		hermione.descansar();	
 		hermione.practicarBasico();	
 		hermione.practicarBasico();	
 		hermione.practicarBasico();	
@@ -188,6 +183,8 @@ public class Main {
 		dumbledore.recibirDano(ataqueConjunto);
 		
 		System.out.println("\n--- HARRY Y HERMIONE GANAN LA BATALLA!! (YA SOLO HAY QUE BUSCAR QUIEN RESUCITARÁ A RON) ---\n");
+		
+		
 		
 	}
 

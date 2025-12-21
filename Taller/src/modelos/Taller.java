@@ -1,7 +1,8 @@
-package modelo;
+package modelos;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+
 
 public class Taller {
 

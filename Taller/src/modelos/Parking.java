@@ -1,5 +1,4 @@
-package modelo;
-
+package modelos;
 public class Parking {
 
 	// creamos un atributo que sea un array llamado lista que almacene 
@@ -50,3 +49,4 @@ public class Parking {
 	
 	
 }
+

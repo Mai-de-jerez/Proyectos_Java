@@ -4,26 +4,41 @@ public class Camion extends Vehiculo{
 
 	private int carga;	
 	private Tipo tipo;
+	
+
+	// constructores
+	
+	public Camion() {}
+	
+	
+	
+	
 	/**
 	 * @param marca
 	 * @param modelo
 	 * @param matricula
+	 * @param propietario
 	 * @param carga
 	 * @param tipo
 	 */
-	
-	
-	public Camion(String marca, String modelo, String matricula, int carga, Tipo tipo) {
-		super(marca, modelo, matricula);
+	public Camion(String marca, String modelo, String matricula, Propietario propietario, int carga, Tipo tipo) {
+		super(marca, modelo, matricula, propietario);
 		this.carga = carga;
 		this.tipo = tipo;
 	}
+
+
+
+
 	/**
 	 * @return el carga
 	 */
 	public int getCarga() {
 		return carga;
 	}
+	
+	
+	
 	/**
 	 * @param carga el carga a establecer
 	 */
@@ -44,14 +59,8 @@ public class Camion extends Vehiculo{
 	}
 	@Override
 	public String toString() {
-		return "Camion [carga=" + carga + ", tipo=" + tipo + "]";
+		return "Camion [carga=" + carga + ", tipo=" + tipo + "] "+ super.toString();
 	}
-	
-	
-	
-	
-	
-	
 	
 	
 }

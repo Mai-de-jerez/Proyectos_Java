@@ -17,12 +17,12 @@ public class Auror extends Hechicero {
 	 */
 	public Auror(String nombre, Casa casa) {
 		super(nombre, casa);
-		this.setVida(this.vida + 20);
-		this.setMana(this.mana + 20);
+		this.setVida(this.vida + 10);
+		this.setMana(this.mana + 10);
 		this.setNivel(this.nivel + 1);
 		this.setTorpeza(10); // me cargo la torpeza del hechicero y le pongo 10
 		this.setControlVarita(60); // me cargo el control de varita del hechicero y le pongo 60
-		this.experienciaCombate = 30; // Ponemos 30 porque es un auror inicial y no va empezar en 0.
+		this.experienciaCombate = 40; // Ponemos 40 porque es un auror inicial y no va empezar en 0.
 		this.arrestos = 0; // partimos de 0 arrestos
 	}
 
@@ -70,16 +70,19 @@ public class Auror extends Hechicero {
                "\nArrestos: " + arrestos;
     }
 	
-	// En este método, el auror patrulla, aumentando su experiencia en combate en 15 puntos cada vez.
 	
+	/*
+	 * En este método, el auror patrulla, aumentando su experiencia en combate en 5 puntos cada vez.
+	 * Se imprime un mensaje para ver su experiencia actual.
+	 */
 	public void patrullar() {
 		this.experienciaCombate += 5;
 		System.out.println("El auror " + getNombre() + " ha entrenado en combate. Experiencia actual: " + this.experienciaCombate);
 	}
 	
 	/*
-	 * El auror intenta arrestar a un aprendiz. Si la vida del aprendiz es menor a 30, lo consigue, 
-	 * aumenta su experiencia en combate en 15 y el número de arrestos en 1.
+	 * El auror intenta arrestar a un aprendiz. Si la vida del aprendiz es menor a 30, lo consigue, si no, se escapa
+	 * aumenta su experiencia en combate en 10 y el número de arrestos en 1.
 	 * @param aprendiz: el aprendiz a arrestar
 	 * @return esArrestado: true si el arresto fue exitoso, false en caso contrario
 	 */
@@ -106,35 +109,32 @@ public class Auror extends Hechicero {
 	 * @return danio: el daño final del hechizo lanzado (num entero)
 	 */
 	public int lanzarHechizo(String hechizo) {
-		if (hechizo == null || this.mana < 5 || this.vida <= 0) {
-	    	System.out.println("El Auror " + getNombre() + " está demasiado agotado para lanzar magia o no eligió hechizo.");
+		
+		if (hechizo == null) {
+			System.out.println("ERROR: El nombre del hechizo no puede ser nulo."); 
+		    return 0;
+			
+		} else if (this.mana < 5 || this.vida <= 0) { 
+	    	System.out.println("No puedes lanzar hechizos, ¡careces de vida o mana!");
 	    	return 0;
-	    }
-
-	    int danioBase = 0;
 	
-	    if (hechizo.equalsIgnoreCase("Expecto Patronum") || hechizo.equalsIgnoreCase("Protego")) {
-	        System.out.println("El Auror " + getNombre() + " lanza un hechizo de protección y ahora tu magia no puede dañarle.");
-	        danioBase = 70;
-	    } else if (hechizo.equalsIgnoreCase("Expelliarmus") || hechizo.equalsIgnoreCase("Stupefy")) {
-	        System.out.println("El Auror " + getNombre() + " lanza un hechizo aturdidor y te ha apagado por completo!.");
-	        danioBase = 50;
-	    } else if (hechizo.equalsIgnoreCase("Lumos") || hechizo.equalsIgnoreCase("Alohomora")) {
-	        System.out.println("El Auror " + getNombre() + " realiza magia básica con efectividad impropia del hechizo.");
-	        danioBase = 40;
-	        
-	    } else if (hechizo.equalsIgnoreCase("Vulnera Sanentur") || hechizo.equalsIgnoreCase("Piertotum Locomotor")){
-	        System.out.println("El Auror " + getNombre() + " no tiene acceso a ese hechizo!.");
-	        return 0;
+		} else if (hechizo.equalsIgnoreCase("Expecto Patronum") || hechizo.equalsIgnoreCase("Protego")) {
+	    	int danio = 0;
+	    	this.mana -= 5;
+	    	if (this.experienciaCombate >= 40) {
+	        	System.out.println(getNombre() + " lanza un hechizo de protección y ahora tu magia no puede dañarle.");
+	        	danio = 40 + this.experienciaCombate;
+	        	this.vida = 100;
+	        } else {
+	        	System.out.println(getNombre() + " lanza un hechizo de protección y es casi intocable.");
+	        	danio = 30 + this.experienciaCombate;
+	        	this.vida = 70; 
+	        }	        
+	        return danio;   
 	    } else {
-	        System.out.println("El Auror " + getNombre() + " se equivocó de hechizo, te libraste por los pelos.");
-	        danioBase = 5; 
+	    	return super.lanzarHechizo(hechizo);  
 	    }
-
-	    this.mana -= 5; 
-	    
-	    return danioBase + (this.experienciaCombate - this.getTorpeza()); 
-	}
+	} 
 	
 	
 	

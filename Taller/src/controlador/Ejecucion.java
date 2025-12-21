@@ -1,8 +1,8 @@
 package controlador;
 
-import modelo.Coche;
-import modelo.Parking;
-import modelo.Taller;
+import modelos.Coche;
+import modelos.Parking;
+import modelos.Taller;
 
 public class Ejecucion {
 
@@ -77,6 +77,6 @@ public class Ejecucion {
 		System.out.println();
 		System.out.println(manolo.verCoches());
 	
-	} 
+	}  
 
 }

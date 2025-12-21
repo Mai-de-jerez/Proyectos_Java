@@ -18,10 +18,10 @@ public class Hechicero extends Aprendiz {
 	public Hechicero(String nombre, Casa casa) {
 		super(nombre, casa);
 		this.setTorpeza(30); // me cargo la torpeza del aprendiz y le pongo 20
-		this.setVida(this.vida + 20);
-		this.setMana(this.mana + 20);
+		this.setVida(this.vida + 10);
+		this.setMana(this.mana + 10);
 		this.setNivel(this.nivel + 1);
-		this.controlVarita = 40;
+		this.controlVarita = 30;
 	}
 	
 	
@@ -54,12 +54,13 @@ public class Hechicero extends Aprendiz {
 	
 	/**
 	 * El hechicero estudia en la biblioteca, aumentando su nivel y control de varita 
-	 * en 10 puntos cada uno. Se imprime un mensaje con el nivel y el control actual.
+	 * en 10 puntos cada uno.
+	 * Se imprime un mensaje con el nivel y el control actual.
 	 */
 	public void estudiarEnBiblioteca() {
-		this.setNivel(this.nivel + 10);
+		this.setNivel(this.nivel + 1);
 	    this.setControlVarita(this.controlVarita + 10);
-	    System.out.println("El Mago ha estudiado en la biblioteca. "
+	    System.out.println("El Mago "+getNombre()+" ha estudiado en la biblioteca. "
 	    		+ "\nControl de varita actual: " + this.controlVarita
 	    		+ "\nNivel actual: " + this.nivel);
 	}
@@ -68,41 +69,40 @@ public class Hechicero extends Aprendiz {
 	/*
 	 * Lanza un hechizo de combate, calculando el daño final basado en el hechizo, el control de varita y la torpeza.
 	 * Valida nulls y que el nivel de vida no sea 0 y el mana sea mayor o igual que 10 por el gasto que conlleva
-	 * Valida que el Hechicero no use hechizos que no conoce
+	 * Valida que el Hechicero no use hechizos que no conoce o no heredó
 	 * @param hechizo: el hechizo a lanzar
 	 * @return danio: el daño final del hechizo lanzado (num entero)
 	 */       
 	public int lanzarHechizo(String hechizo) {
-		if (hechizo == null || this.mana < 10 || this.vida <= 0) {
-	    	System.out.println("El Hehcicero " + getNombre() + " está demasiado agotado para lanzar magia o no eligió hechizo.");
-	    	return 0;
-	    }
-
-	    int danioBase = 0;
 		
-
-	    if (hechizo.equalsIgnoreCase("Expelliarmus") || hechizo.equalsIgnoreCase("Stupefy")) {
-	        System.out.println("El Hechicero " + getNombre() + " lanza un hechizo que te dejó sin varita!.");
-	        danioBase = 50;
-	    }
+		if (hechizo == null) {
+			System.out.println("ERROR: El nombre del hechizo no puede ser nulo."); 
+		    return 0;
+			
+		} else if (this.mana < 10 || this.vida <= 0) { 
+	    	System.out.println("No puedes lanzar hechizos, ¡careces de vida o mana!");
+	    	return 0;
+		 	 
+		} else if (hechizo.equalsIgnoreCase("Expelliarmus") || hechizo.equalsIgnoreCase("Stupefy")) {
+	    	int danio =0;
+	    	mana -= 10;
+	    	if (this.getTorpeza() > 50) {
+	    		System.out.println(getNombre() + " lanzó " + hechizo + " con algo de torpeza, el daño causado es moderado.");
+	    		danio = 20 + this.controlVarita;
+	    	} else if (this.getTorpeza() > 30) {
+	    		System.out.println(getNombre() + " lanzó " + hechizo + " con agudeza aceptable, el daño causado es importante.");
+	        	danio = 30 + this.controlVarita;
+	    	} else  {
+	        	System.out.println(getNombre() + " lanzó " + hechizo + " con agudeza increíble, el daño causado es irreparable.");
+	        	danio = 40 + this.controlVarita;
+	        }
+	    	return danio;
 	    
-	    else if (hechizo.equalsIgnoreCase("Lumos") || hechizo.equalsIgnoreCase("Alohomora")) {
-	        System.out.println("El Hechicero " + getNombre() + " realiza magia básica con efectividad impropia del hechizo.");
-	        danioBase = 30;
-	        
-	    } else if (hechizo.equalsIgnoreCase("Expecto Patronum") || hechizo.equalsIgnoreCase("Protego") || 
-	    		hechizo.equalsIgnoreCase("Vulnera Sanentur") || hechizo.equalsIgnoreCase("Piertotum Locomotor")){
-	        System.out.println("El Hechicero " + getNombre() + " no tiene acceso a ese hechizo!.");
-	        return 0;
-	    } else {
-	        System.out.println("El Hechicero " + getNombre() + " se equivocó de hechizo!.");
-	        danioBase = 5; 
+		} else {
+			
+	    	return super.lanzarHechizo(hechizo); 
 	    }
-
-	    this.mana -= 10;  
-	    
-	    return danioBase + (this.controlVarita - this.getTorpeza()); 
-	}
+	} 
 	
 	
 	// Devuelve el detalle del Hechicero

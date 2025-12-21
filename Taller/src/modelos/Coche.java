@@ -1,8 +1,6 @@
-package modelo;
+package modelos;
 
-/**
- * @deprecated Clase reemplazada {@link Vehículo}
- */
+
 public class Coche {
 	
 	// atributos que tendrá el objeto
@@ -16,6 +14,7 @@ public class Coche {
 	// Constructores
 	// Con este puedes crear el objeto sin tener que pasar ningun parametro
 	public Coche() {
+		
 	}
 	
 
@@ -90,8 +89,8 @@ public class Coche {
 		return color;
 	}
 
-	/**
-	 * 
+	/*
+	 * Así se pone deprecado en un método concreto
 	 * @param color
 	 * @deprecated Clase reemplazada {@link Turismo}
 	 */
@@ -135,7 +134,5 @@ public class Coche {
 		return "Coche [marca=" + marca + ", modelo=" + modelo + ", precio=" + precio + ", color=" + color + ", km=" + km
 				+ "]";
 	}
-		
-	
 	
 }
