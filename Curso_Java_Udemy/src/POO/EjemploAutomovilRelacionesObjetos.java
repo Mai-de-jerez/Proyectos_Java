@@ -5,9 +5,9 @@ public class EjemploAutomovilRelacionesObjetos {
 	public static void main(String[] args) {
 
 		// Creamos los  conductores de tipo Persona
-		Persona conductorSubaru = new Persona("Luci", "Martínez");
-		Persona conductorMazda = new Persona("Pato", "Rodríguez");
-		Persona conductorNissan = new Persona("María", "Jiménez");
+		Persona luci = new Persona("Luci", "Martínez");
+		Persona pato = new Persona("Pato", "Rodríguez");
+		Persona maria = new Persona("María", "Jiménez");
 		Persona bea = new Persona("Bea", "González");
 				
 		// nuevo objeto de la clase Automovil
@@ -29,10 +29,10 @@ public class EjemploAutomovilRelacionesObjetos {
 		
 		
 		// Asignar el conductor al vehiculo subaru
-		subaru.setConductor(conductorSubaru);
-		mazda.setConductor(conductorMazda);
-		nissan.setConductor(conductorNissan);
-		opel.setConductor(bea);
+		subaru.setConductor(luci);
+		mazda.setConductor(pato);
+		nissan.setConductor(bea);
+		opel.setConductor(maria);
 		
 		// Creacion de ruedas para los vehiculos
 		Rueda[] ruedasSubaru = new Rueda[5];
@@ -52,13 +52,19 @@ public class EjemploAutomovilRelacionesObjetos {
 		 * 		nissan.addRueda(new Rueda("Pirelli", 20, 11.5)); }
 		 */
 		
-		// Alternativa
-		nissan.addRueda(new Rueda("Pirelli", 20, 11.5));
+		// Alternativa con addRueda
+		nissan.setTipo(TipoAutomovil.PICKUP);
+		nissan.addRueda(new Rueda("Pirelli", 20, 11.5))
+				.addRueda(new Rueda("Pirelli", 20, 11.5))
+				.addRueda(new Rueda("Pirelli", 20, 11.5))
+				.addRueda(new Rueda("Pirelli", 20, 11.5))
+				.addRueda(new Rueda("Pirelli", 20, 11.5));
 		
-		Rueda[] ruedasOpel = new Rueda[5];
-		for(int i = 0; i < ruedasSubaru.length; i++) {
-			opel.addRueda(new Rueda("Firestone", 18, 9.5));
-		}
+		/*
+		 * Rueda[] ruedasOpel = new Rueda[5]; 
+		 * for(int i = 0; i < ruedasSubaru.length;
+		 * i++) { opel.addRueda(new Rueda("Firestone", 18, 9.5)); }
+		 */ 
 	
 		
 		// Asignacion de ruedas a vehiculos

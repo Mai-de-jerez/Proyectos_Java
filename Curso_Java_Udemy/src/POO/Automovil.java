@@ -1,6 +1,6 @@
 package POO;
 
-public class Automovil {
+public class Automovil implements Comparable<Automovil>{
 	
 	// Atributos privados
 	private int id;
@@ -224,8 +224,7 @@ public class Automovil {
 		if(indiceRuedas < this.ruedas.length) {
 		this.ruedas[indiceRuedas++] = rueda;
 		}
-		
-		return this; 
+		return this;
 	}
 	
 	// Método que imprime el detalle del vehiculo
@@ -336,7 +335,12 @@ public class Automovil {
 	@Override
 	public String toString() {
 		return "Automovil [id="+ id +"fabricante=" + fabricante + ", modelo=" + modelo + "]";
-	} 
+	}
+
+	@Override
+	public int compareTo(Automovil a) {	
+		return this.fabricante.compareTo(a.fabricante);
+	}  
 	
 	
 	
